@@ -1,0 +1,28 @@
+{
+  "name": "strapi-plugin-responsive-image",
+  "version": "0.1.0",
+  "description": "Custom responsive image formats for strapi.",
+  "strapi": {
+    "name": "Responsive Image",
+    "icon": "images",
+    "description": "Custom responsive image formats for strapi."
+  },
+  "dependencies": {},
+  "author": {
+    "name": "Nicolas Hamelin",
+    "url": "https://nicolashamelin.fr"
+  },
+  "homepage": "https://github.com/nicolashmln/strapi-plugin-responsive-image",
+  "keywords": [
+    "strapi",
+    "plugin",
+    "responsive",
+    "image",
+    "media"
+  ],
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
