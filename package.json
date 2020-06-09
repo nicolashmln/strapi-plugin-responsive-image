@@ -7,7 +7,20 @@
     "icon": "images",
     "description": "Custom responsive image formats for strapi."
   },
-  "dependencies": {},
+  "dependencies": {
+    "@buffetjs/core": "3.1.1",
+    "@buffetjs/custom": "3.1.1",
+    "@buffetjs/icons": "3.1.1",
+    "immutable": "3.8.2",
+    "lodash": "4.17.15",
+    "prop-types": "15.7.2",
+    "react": "16.13.1",
+    "react-router-dom": "^5.2.0",
+    "sharp": "0.25.3",
+    "strapi-plugin-upload": "^3.0.1",
+    "strapi-utils": "3.0.1",
+    "styled-components": "5.1.1"
+  },
   "author": {
     "name": "Nicolas Hamelin",
     "url": "https://nicolashamelin.fr"
