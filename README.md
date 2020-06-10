@@ -18,12 +18,14 @@ Using npm
 
 ```bash
 npm install --save strapi-plugin-responsive-image
+npm run build
 ```
 
 Using yarn
 
 ```bash
 yarn add strapi-plugin-responsive-image
+yarn build
 ```
 
 ## Setup
