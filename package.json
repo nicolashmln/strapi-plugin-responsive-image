@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-responsive-image",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Custom responsive image formats for strapi.",
   "strapi": {
     "name": "Responsive Image",
