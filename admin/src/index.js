@@ -26,17 +26,19 @@ export default strapi => {
     name: pluginPkg.strapi.name,
     preventComponentRendering: false,
     settings: {
-      global: [
-        {
-          title: {
-            id: getTrad('plugin.name'),
-            defaultMessage: 'Responsive image',
+      global: {
+        links: [
+          {
+            title: {
+              id: getTrad('plugin.name'),
+              defaultMessage: 'Responsive image',
+            },
+            name: 'responsive-image',
+            to: `${strapi.settingsBaseURL}/responsive-image`,
+            Component: SettingsPage,
           },
-          name: 'responsive-image',
-          to: `${strapi.settingsBaseURL}/responsive-image`,
-          Component: SettingsPage,
-        },
-      ],
+        ],
+      },
     },
     trads,
   };
