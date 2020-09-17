@@ -8,18 +8,18 @@
     "description": "Custom responsive image formats for strapi."
   },
   "dependencies": {
-    "@buffetjs/core": "3.1.1",
-    "@buffetjs/custom": "3.1.1",
-    "@buffetjs/icons": "3.1.1",
+    "@buffetjs/core": "^3.2.3",
+    "@buffetjs/custom": "^3.2.3",
+    "@buffetjs/icons": "^3.2.3",
     "immutable": "3.8.2",
-    "lodash": "4.17.15",
+    "lodash": "^4.17.20",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-router-dom": "^5.2.0",
-    "sharp": "0.25.3",
-    "strapi-plugin-upload": "^3.0.1",
-    "strapi-utils": "3.0.1",
-    "styled-components": "5.1.1"
+    "sharp": "^0.26.0",
+    "strapi-plugin-upload": "^3.1.5",
+    "strapi-utils": "^3.1.5",
+    "styled-components": "^5.2.0"
   },
   "author": {
     "name": "Nicolas Hamelin",
