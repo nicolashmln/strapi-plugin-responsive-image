@@ -16,10 +16,10 @@
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-router-dom": "^5.2.0",
-    "sharp": "^0.26.0",
-    "strapi-plugin-upload": "^3.1.5",
-    "strapi-utils": "^3.1.5",
-    "styled-components": "^5.2.0"
+    "sharp": "^0.26.2",
+    "strapi-plugin-upload": "^3.2.5",
+    "strapi-utils": "^3.2.5",
+    "styled-components": "^5.2.1"
   },
   "author": {
     "name": "Nicolas Hamelin",
