@@ -16,8 +16,9 @@ const getDimensions = buffer =>
     .then(({ width = null, height = null }) => ({ width, height }))
     .catch(() => ({})); // ignore errors
 
-const resizeTo = (buffer, options, quality, progressive) =>
-  sharp(buffer)
+const resizeTo = (buffer, options, quality, progressive, autoOrientation) => {
+  const sharpInstance = autoOrientation ? sharp(buffer).rotate() : sharp(buffer);
+  return sharpInstance
     .resize(options)
     .jpeg({ quality, progressive, force: false })
     .png({ compressionLevel: Math.floor((quality / 100) * 9), progressive, force: false })
@@ -25,10 +26,12 @@ const resizeTo = (buffer, options, quality, progressive) =>
     .tiff({ quality, force: false })
     .toBuffer()
     .catch(() => null);
+};
 
 const generateResponsiveFormats = async file => {
   const {
     responsiveDimensions = false,
+    autoOrientation = false,
   } = await strapi.plugins.upload.services.upload.getSettings();
 
   if (!responsiveDimensions) return [];
@@ -53,17 +56,17 @@ const generateResponsiveFormats = async file => {
           ...format,
           width: format.width * 2,
           height: format.height ? format.height * 2 : null
-        }, originalDimensions, quality, progressive
+        }, originalDimensions, quality, progressive, autoOrientation
       }))
     }
-    return generateBreakpoint(format.name, { file, format, originalDimensions, quality, progressive });
+    return generateBreakpoint(format.name, { file, format, originalDimensions, quality, progressive, autoOrientation });
   })
 
   return Promise.all([...x1Formats, ...x2Formats]);
 };
 
-const generateBreakpoint = async (key, { file, format, quality, progressive }) => {
-  const newBuff = await resizeTo(file.buffer, format, quality, progressive);
+const generateBreakpoint = async (key, { file, format, quality, progressive, autoOrientation }) => {
+  const newBuff = await resizeTo(file.buffer, format, quality, progressive, autoOrientation);
 
   if (newBuff) {
     const { width, height, size } = await getMetadatas(newBuff);
