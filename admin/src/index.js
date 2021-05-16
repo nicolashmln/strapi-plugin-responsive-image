@@ -1,5 +1,6 @@
 import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
+import pluginPermissions from './permissions';
 import SettingsPage from './containers/Settings';
 import Initializer from './containers/Initializer';
 import lifecycles from './lifecycles';
@@ -36,6 +37,7 @@ export default strapi => {
             name: 'responsive-image',
             to: `${strapi.settingsBaseURL}/responsive-image`,
             Component: SettingsPage,
+            permissions: pluginPermissions.settings,
           },
         ],
       },
