@@ -10,6 +10,7 @@ const ImageFormat = (props) => {
 
   const fitList = ['cover', 'contain', 'fill', 'inside', 'outside'];
   const positionList = ['centre', 'center', 'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest']
+  const convertToFormatList = ['', 'jpeg', 'png', 'webp']
 
   const input = props.format;
   const handleFormatsChange = props.handleFormatsChange;
@@ -43,7 +44,7 @@ const ImageFormat = (props) => {
           value={input.name}
         />
       </div>
-      <div className="col-6">
+      <div className="col-3">
         <Inputs
           label={formatMessage({
             id: getTrad('settings.form.formats.x2.label'),
@@ -53,6 +54,21 @@ const ImageFormat = (props) => {
           onChange={(target) => handleFormatsChange(target, index)}
           type="bool"
           value={input.x2}
+        />
+      </div>
+      <div className="col-3">
+        <Inputs
+          label={formatMessage({
+            id: getTrad('settings.form.formats.convertToFormat.label'),
+          })}
+          description={formatMessage({
+            id: getTrad('settings.form.formats.convertToFormat.description'),
+          })}
+          name="convertToFormat"
+          onChange={(target) => handleFormatsChange(target, index)}
+          type="select"
+          options={convertToFormatList}
+          value={input.convertToFormat}
         />
       </div>
       <div className="col-6">

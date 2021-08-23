@@ -10,6 +10,8 @@
   "settings.form.formats.name.label": "Name",
   "settings.form.formats.name.description": "Characters authorized: [a-zA-Z0-9_-]",
   "settings.form.formats.x2.label": "Generate x2 version",
+  "settings.form.formats.convertToFormat.label": "Convert To Format",
+  "settings.form.formats.convertToFormat.description": "Convert image to this format",
   "settings.form.formats.width.label": "Width",
   "settings.form.formats.height.label": "Height",
   "settings.form.formats.fit.label": "Fit",

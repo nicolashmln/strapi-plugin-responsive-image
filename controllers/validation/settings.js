@@ -16,6 +16,7 @@ const settingsSchema = yup.object({
   formats: yup.array().of(yup.object().shape({
     name: yup.string().matches(/^[a-zA-Z0-9_-]+$/gi).required(),
     x2: yup.boolean(),
+    convertToFormat: yup.string().transform(emptyStringToNull).nullable(),
     width: yup.number().required().min(1),
     height: yup.number().min(1).transform(emptyStringToNull).nullable(),
     fit: yup.string(),
