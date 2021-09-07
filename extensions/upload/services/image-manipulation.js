@@ -75,10 +75,6 @@ const getFileExtension = (file, {convertToFormat}) => {
     return file.ext
   }
 
-  if(convertToFormat === 'jpeg') {
-    return '.jpg'
-  }
-
   return `.${convertToFormat}`
 }
 

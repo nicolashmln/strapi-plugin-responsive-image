@@ -10,7 +10,13 @@ const ImageFormat = (props) => {
 
   const fitList = ['cover', 'contain', 'fill', 'inside', 'outside'];
   const positionList = ['centre', 'center', 'north', 'northeast', 'east', 'southeast', 'south', 'southwest', 'west', 'northwest']
-  const convertToFormatList = ['', 'jpeg', 'png', 'webp', 'avif']
+  const convertToFormatList = [
+    { value: '', label: 'Same as source' },
+    { value: 'jpg', label: 'JPEG' },
+    { value: 'png', label: 'PNG' },
+    { value: 'webp', label: 'WebP' },
+    { value: 'avif', label: 'AVIF' },
+  ];
 
   const input = props.format;
   const handleFormatsChange = props.handleFormatsChange;
