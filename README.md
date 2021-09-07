@@ -73,6 +73,7 @@ The plugin uses [sharp](https://github.com/lovell/sharp) to resize the image.
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Name                | **Required** Name of the format. The file generated will look like `name_file_uploaded_hash.jpeg`                                                        |
 | Generate x2 version | If ON it generates a format `name_x2` with a width and a height twice bigger                                                                             |
+| Output format       | The output format of your images: Same as source, JPEG, PNG, WebP or AVIF                                                                                |
 | Width               | **Required** Width of the image                                                                                                                          |
 | Height              | Height of the image                                                                                                                                      |
 | Fit                 | How the image should be resized to fit both provided dimensions. [More info](https://sharp.pixelplumbing.com/api-resize#parameters)                      |
