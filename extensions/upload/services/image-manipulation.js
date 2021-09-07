@@ -17,7 +17,12 @@ const getDimensions = buffer =>
     .catch(() => ({})); // ignore errors
 
 const resizeTo = (buffer, options, quality, progressive, autoOrientation) => {
-  const sharpInstance = autoOrientation ? sharp(buffer).rotate() : sharp(buffer);
+  let sharpInstance = autoOrientation ? sharp(buffer).rotate() : sharp(buffer);
+
+  if (options.convertToFormat) {
+    sharpInstance = sharpInstance.toFormat(options.convertToFormat)
+  }
+
   return sharpInstance
     .resize(options)
     .jpeg({ quality, progressive, force: false })
@@ -65,6 +70,18 @@ const generateResponsiveFormats = async file => {
   return Promise.all([...x1Formats, ...x2Formats]);
 };
 
+const getFileExtension = (file, {convertToFormat}) => {
+  if(!convertToFormat) {
+    return file.ext
+  }
+
+  if(convertToFormat === 'jpeg') {
+    return '.jpg'
+  }
+
+  return `.${convertToFormat}`
+}
+
 const generateBreakpoint = async (key, { file, format, quality, progressive, autoOrientation }) => {
   const newBuff = await resizeTo(file.buffer, format, quality, progressive, autoOrientation);
 
@@ -75,7 +92,7 @@ const generateBreakpoint = async (key, { file, format, quality, progressive, aut
       key,
       file: {
         hash: `${key}_${file.hash}`,
-        ext: file.ext,
+        ext: getFileExtension(file, format),
         mime: file.mime,
         width,
         height,
