@@ -22,7 +22,7 @@ export default {
         to: '/settings/responsive-image',
         Component: async () => {
           const component = await import(
-            /* webpackChunkName: "responsive-image-settings-page" */ './containers/Settings'
+            /* webpackChunkName: "responsive-image-settings-page" */ './pages/Settings'
           );
 
           return component;

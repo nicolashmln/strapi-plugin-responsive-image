@@ -2,6 +2,7 @@
   "plugin.name": "Responsive image",
   "plugin.description.long": "Custom responsive image formats.",
   "plugin.description.short": "Custom responsive image formats.",
+  "page.title": "Settings - Responsive Image",
   "settings.error": "Error while saving. See console for more info.",
   "settings.section.toActivate.label": "The \"{setting}\" needs to be activated on the <link>Media Library settings</link>",
   "settings.section.formats.label": "Formats",

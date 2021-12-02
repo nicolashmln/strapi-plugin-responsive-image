@@ -11,15 +11,18 @@
     "@buffetjs/core": "^3.3.8",
     "@buffetjs/custom": "^3.3.8",
     "@buffetjs/icons": "^3.3.8",
+    "@strapi/design-system": "0.0.1-alpha.70",
+    "@strapi/helper-plugin": "^4.0.0",
+    "@strapi/icons": "0.0.1-alpha.70",
+    "@strapi/plugin-upload": "4.0.0",
+    "@strapi/utils": "4.0.0",
     "immutable": "3.8.2",
     "lodash": "^4.17.21",
     "prop-types": "15.7.2",
-    "react": "^16.14.0",
-    "react-router-dom": "^5.0.0",
+    "react": "^17.0.2",
+    "react-router-dom": "5.2.0",
     "sharp": "^0.29.0",
-    "styled-components": "^5.2.3",
-    "@strapi/plugin-upload": "4.0.0",
-    "@strapi/utils": "4.0.0"
+    "styled-components": "^5.2.3"
   },
   "author": {
     "name": "Nicolas Hamelin",
