@@ -5,7 +5,11 @@
  * It initializes the provider and sets the default settings in db.
  */
 
-module.exports = async () => {
+module.exports = async (
+  {
+    strapi
+  }
+) => {
   // set plugin store
   const configurator = strapi.store({
     type: 'plugin',
