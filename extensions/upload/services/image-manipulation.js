@@ -4,7 +4,7 @@
  */
 const sharp = require('sharp');
 
-const { bytesToKbytes } = require('strapi-plugin-upload/utils/file');
+const { bytesToKbytes } = require("@strapi/plugin-upload/utils/file");
 
 const getMetadatas = buffer =>
   sharp(buffer)

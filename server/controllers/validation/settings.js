@@ -1,6 +1,6 @@
 'use strict';
 
-const { yup, formatYupErrors } = require('strapi-utils');
+const { yup, formatYupErrors } = require("@strapi/utils");
 
 // helper for yup transform function
 function emptyStringToNull(value, originalValue) {

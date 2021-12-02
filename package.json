@@ -17,9 +17,9 @@
     "react": "^16.14.0",
     "react-router-dom": "^5.0.0",
     "sharp": "^0.29.0",
-    "strapi-plugin-upload": "^3.6.8",
-    "strapi-utils": "^3.6.8",
-    "styled-components": "^5.2.3"
+    "styled-components": "^5.2.3",
+    "@strapi/plugin-upload": "4.0.0",
+    "@strapi/utils": "4.0.0"
   },
   "author": {
     "name": "Nicolas Hamelin",
