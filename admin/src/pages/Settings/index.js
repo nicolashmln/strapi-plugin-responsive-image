@@ -143,7 +143,7 @@ export const SettingsPage = () => {
           }
           subtitle={formatMessage({
             id: getTrad('settings.sub-header.label'),
-            defaultMessage: 'Configure the settings for the media library',
+            defaultMessage: 'Configure the settings for the responsive image',
           })}
         />
         <ContentLayout>
