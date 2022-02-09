@@ -1,6 +1,7 @@
 'use strict';
 
 const validateSettings = require('./validation/settings');
+const { getService } = require('../utils');
 
 /**
  * responsive-image.js controller
@@ -9,9 +10,8 @@ const validateSettings = require('./validation/settings');
  */
 
 module.exports = {
-
   async getSettings(ctx) {
-    const data = await strapi.plugins['responsive-image'].services['responsive-image'].getSettings();
+    const data = await getService('responsiveImage').getSettings();
 
     ctx.body = { data };
   },
@@ -19,7 +19,7 @@ module.exports = {
   async updateSettings(ctx) {
     const data = await validateSettings(ctx.request.body);
 
-    await strapi.plugins['responsive-image'].services['responsive-image'].setSettings(data);
+    const data = await getService('responsiveImage').setSettings(data);
 
     ctx.body = { data };
   },
