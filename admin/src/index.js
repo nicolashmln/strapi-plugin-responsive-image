@@ -17,8 +17,8 @@ export default {
     app.addSettingsLink(
       'global',
       {
-        intLabel: { id: getTrad('plugin.name'), defaultMessage: 'Responsive image' },
-        id: 'responsive-image',
+        id: 'responsive-image-settings',
+        intlLabel: { id: getTrad('plugin.name'), defaultMessage: 'Responsive image' },
         to: '/settings/responsive-image',
         Component: async () => {
           const component = await import(
