@@ -3,6 +3,12 @@
 const validateSettings = require('./validation/settings');
 const { getService } = require('../utils');
 
+const ACTIONS = {
+  readSettings: 'plugin::upload.settings.read',
+};
+
+const fileModel = 'plugin::upload.file';
+
 /**
  * responsive-image.js controller
  *
@@ -17,9 +23,18 @@ module.exports = {
   },
 
   async updateSettings(ctx) {
-    const data = await validateSettings(ctx.request.body);
+    const {
+      request: { body },
+      state: { userAbility },
+    } = ctx;
 
-    const data = await getService('responsiveImage').setSettings(data);
+    if (userAbility.cannot(ACTIONS.readSettings, fileModel)) {
+      return ctx.forbidden();
+    }
+
+    const data = await validateSettings(body);
+
+    await getService('responsiveImage').setSettings(data);
 
     ctx.body = { data };
   },
