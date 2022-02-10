@@ -3,7 +3,8 @@
   "version": "0.5.0",
   "description": "Custom responsive image formats for strapi.",
   "strapi": {
-    "name": "Responsive Image",
+    "name": "responsive-image",
+    "displayName": "Responsive Image",
     "icon": "images",
     "description": "Custom responsive image formats for strapi.",
     "kind": "plugin"
@@ -24,6 +25,9 @@
     "react-router-dom": "5.2.0",
     "sharp": "^0.29.0",
     "styled-components": "^5.2.3"
+  },
+  "peerDependencies": {
+    "@strapi/strapi": "^4.x"
   },
   "author": {
     "name": "Nicolas Hamelin",
