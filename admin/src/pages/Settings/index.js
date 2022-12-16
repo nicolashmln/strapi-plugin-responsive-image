@@ -19,7 +19,9 @@ import { Stack } from "@strapi/design-system/Stack";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Link } from "@strapi/design-system/Link";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
+import { BaseHeaderLayout } from "@strapi/design-system";
 import Trash from "@strapi/icons/Trash";
+import Plus from "@strapi/icons/Plus";
 import {
   ContentLayout,
   HeaderLayout,
@@ -142,6 +144,12 @@ export const SettingsPage = () => {
       keys: name,
       value,
       index,
+    });
+  };
+
+  const handleAddFormat = () => {
+    dispatch({
+      type: "ADD_FORMAT",
     });
   };
 
@@ -280,6 +288,22 @@ export const SettingsPage = () => {
                     </Grid>
                   </Stack>
                 </Box>
+                <BaseHeaderLayout
+                  primaryAction={
+                    <Button startIcon={<Plus />} onClick={handleAddFormat}>
+                      {formatMessage({
+                        id: getTrad("settings.section.formats.add.label"),
+                      })}
+                    </Button>
+                  }
+                  title={formatMessage({
+                    id: getTrad("settings.section.formats.label"),
+                  })}
+                  as="h2"
+                  style={{
+                    margin: "0 -56px 0 -56px",
+                  }}
+                />
                 {modifiedData.formats.map((input, index) => (
                   <Box
                     key={index}
