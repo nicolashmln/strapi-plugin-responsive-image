@@ -114,6 +114,13 @@ export const SettingsPage = () => {
     } catch (err) {
       console.error(err);
 
+      try {
+        toggleNotification({
+          type: "warning",
+          message: err.response.data.error.message || err.message,
+        });
+      } catch (error) {}
+
       dispatch({ type: "ON_SUBMIT_ERROR" });
     }
 
@@ -214,7 +221,7 @@ export const SettingsPage = () => {
             <LoadingIndicatorPage />
           ) : (
             <Layout>
-              <Stack size={12}>
+              <Stack spacing={12}>
                 <Box
                   background="neutral0"
                   padding={6}

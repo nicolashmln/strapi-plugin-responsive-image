@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useIntl } from "react-intl";
 import { TextInput } from "@strapi/design-system";
+import { NumberInput } from "@strapi/design-system";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { ToggleInput } from "@strapi/design-system/ToggleInput";
 import { Select, Option } from "@strapi/design-system";
@@ -81,12 +82,15 @@ const ImageFormat = (props) => {
           })}
           hint={`${input.width * 2}px`}
           onChange={(e) => {
-            handleFormatsChange({
-              target: {
-                name: "x2",
-                value: e.target.checked,
+            handleFormatsChange(
+              {
+                target: {
+                  name: "x2",
+                  value: e.target.checked,
+                },
               },
-            });
+              index
+            );
           }}
         />
       </GridItem>
@@ -101,15 +105,27 @@ const ImageFormat = (props) => {
           name="convertToFormat"
           value={input.convertToFormat}
           selectButtonTitle="Carret Down Button"
-          onChange={(target) => handleFormatsChange(target, index)}
+          onChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "convertToFormat",
+                  value,
+                },
+              },
+              index
+            )
+          }
         >
           {convertToFormatList.map((format) => (
-            <Option value={format.value}>{format.label}</Option>
+            <Option key={format.value} value={format.value}>
+              {format.label}
+            </Option>
           ))}
         </Select>
       </GridItem>
       <GridItem col={6} s={12}>
-        <TextInput
+        <NumberInput
           label={formatMessage({
             id: getTrad("settings.form.formats.width.label"),
           })}
@@ -117,19 +133,37 @@ const ImageFormat = (props) => {
           validations={{
             min: 1,
           }}
-          onChange={(target) => handleFormatsChange(target, index)}
-          type="number"
+          onValueChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "width",
+                  value,
+                },
+              },
+              index
+            )
+          }
           value={input.width}
         />
       </GridItem>
       <GridItem col={6} s={12}>
-        <TextInput
+        <NumberInput
           label={formatMessage({
             id: getTrad("settings.form.formats.height.label"),
           })}
           name="height"
-          onChange={(target) => handleFormatsChange(target, index)}
-          type="number"
+          onValueChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "height",
+                  value,
+                },
+              },
+              index
+            )
+          }
           value={input.height}
         />
       </GridItem>
@@ -144,10 +178,22 @@ const ImageFormat = (props) => {
           name="fit"
           value={input.fit}
           selectButtonTitle="Carret Down Button"
-          onChange={(target) => handleFormatsChange(target, index)}
+          onChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "fit",
+                  value,
+                },
+              },
+              index
+            )
+          }
         >
           {fitList.map((fit) => (
-            <Option value={fit}>{fit}</Option>
+            <Option key={fit} value={fit}>
+              {fit}
+            </Option>
           ))}
         </Select>
       </GridItem>
@@ -162,10 +208,22 @@ const ImageFormat = (props) => {
           name="position"
           value={input.position}
           selectButtonTitle="Carret Down Button"
-          onChange={(target) => handleFormatsChange(target, index)}
+          onChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "position",
+                  value,
+                },
+              },
+              index
+            )
+          }
         >
           {positionList.map((position) => (
-            <Option value={position}>{position}</Option>
+            <Option key={position} value={position}>
+              {position}
+            </Option>
           ))}
         </Select>
       </GridItem>
@@ -193,7 +251,7 @@ const ImageFormat = (props) => {
                 name: "withoutEnlargement",
                 value: e.target.checked,
               },
-            });
+            }, index);
           }}
         />
       </GridItem>

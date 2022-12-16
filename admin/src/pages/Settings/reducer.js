@@ -46,13 +46,16 @@ const reducer = (state, action) =>
           ["modifiedData", ...action.keys.split(".")],
           action.value
         );
-        // TODO
-        // case 'ON_FORMATS_CHANGE':
-        //   return state.updateIn(['modifiedData', 'formats', action.index, action.keys], () => action.value);
-        // case 'ADD_FORMAT':
-        //   return state.updateIn(['modifiedData', 'formats'], arr => arr.unshift(fromJS(defaultFormat)));
-        // case 'DELETE_FORMAT':
-        //   return state.updateIn(['modifiedData', 'formats'], arr => arr.splice(action.index, 1));
+        break;
+      case "ON_FORMATS_CHANGE":
+        drafState.modifiedData.formats[action.index][action.keys] =
+          action.value;
+        break;
+      case "ADD_FORMAT":
+        drafState.modifiedData.formats.push(defaultFormat);
+        break;
+      case "DELETE_FORMAT":
+        drafState.modifiedData.formats.splice(action.index, 1);
         break;
       case "ON_SUBMIT": {
         drafState.isSubmiting = true;
