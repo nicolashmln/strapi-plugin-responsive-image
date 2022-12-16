@@ -23,6 +23,7 @@ const defaultFormat = {
   fit: "cover",
   position: "centre",
   withoutEnlargement: false,
+  convertToFormat: "",
 };
 
 const reducer = (state, action) =>

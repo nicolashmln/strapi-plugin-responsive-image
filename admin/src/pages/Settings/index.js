@@ -19,6 +19,7 @@ import { Stack } from "@strapi/design-system/Stack";
 import { TextInput } from "@strapi/design-system/TextInput";
 import { Link } from "@strapi/design-system/Link";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
+import Trash from "@strapi/icons/Trash";
 import {
   ContentLayout,
   HeaderLayout,
@@ -28,6 +29,7 @@ import axios from "axios";
 import isEqual from "lodash/isEqual";
 import { axiosInstance, getRequestUrl, getTrad } from "../../utils";
 import init from "./init";
+import ImageFormat from "./ImageFormat";
 import reducer, { initialState } from "./reducer";
 import pluginPermissions from "../../permissions";
 
@@ -96,23 +98,23 @@ export const SettingsPage = () => {
 
     lockApp();
 
-    dispatch({ type: 'ON_SUBMIT' });
+    dispatch({ type: "ON_SUBMIT" });
 
     try {
-      await axiosInstance.put(getRequestUrl('settings'), modifiedData);
+      await axiosInstance.put(getRequestUrl("settings"), modifiedData);
 
       dispatch({
-        type: 'SUBMIT_SUCCEEDED',
+        type: "SUBMIT_SUCCEEDED",
       });
 
       toggleNotification({
-        type: 'success',
-        message: { id: 'notification.form.success.fields' },
+        type: "success",
+        message: { id: "notification.form.success.fields" },
       });
     } catch (err) {
       console.error(err);
 
-      dispatch({ type: 'ON_SUBMIT_ERROR' });
+      dispatch({ type: "ON_SUBMIT_ERROR" });
     }
 
     unlockApp();
@@ -121,9 +123,25 @@ export const SettingsPage = () => {
   const handleChange = ({ target: { name, value } }) => {
     console.log("handleChange", name, value);
     dispatch({
-      type: 'ON_CHANGE',
+      type: "ON_CHANGE",
       keys: name,
       value,
+    });
+  };
+
+  const handleFormatsChange = ({ target: { name, value } }, index) => {
+    dispatch({
+      type: "ON_FORMATS_CHANGE",
+      keys: name,
+      value,
+      index,
+    });
+  };
+
+  const handleDeleteFormat = (index) => {
+    dispatch({
+      type: "DELETE_FORMAT",
+      index,
     });
   };
 
@@ -255,6 +273,35 @@ export const SettingsPage = () => {
                     </Grid>
                   </Stack>
                 </Box>
+                {modifiedData.formats.map((input, index) => (
+                  <Box
+                    key={index}
+                    background="neutral0"
+                    padding={6}
+                    shadow="filterShadow"
+                    hasRadius
+                    style={{ marginTop: 30 }}
+                  >
+                    <ImageFormat
+                      className="row"
+                      format={input}
+                      handleFormatsChange={handleFormatsChange}
+                      index={index}
+                    />
+                    <Button
+                      variant="danger"
+                      startIcon={<Trash />}
+                      onClick={() => handleDeleteFormat(index)}
+                      style={{
+                        marginTop: 25,
+                      }}
+                    >
+                      {formatMessage({
+                        id: getTrad("settings.section.formats.delete.label"),
+                      })}
+                    </Button>
+                  </Box>
+                ))}
               </Stack>
             </Layout>
           )}
