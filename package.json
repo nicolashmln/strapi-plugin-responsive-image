@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-responsive-image",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Custom responsive image formats for strapi.",
   "strapi": {
     "name": "responsive-image",
@@ -10,21 +10,7 @@
     "kind": "plugin"
   },
   "dependencies": {
-    "@buffetjs/core": "^3.3.8",
-    "@buffetjs/custom": "^3.3.8",
-    "@buffetjs/icons": "^3.3.8",
-    "@strapi/design-system": "0.0.1-alpha.70",
-    "@strapi/helper-plugin": "^4.0.0",
-    "@strapi/icons": "0.0.1-alpha.70",
-    "@strapi/plugin-upload": "^4.0.7",
-    "@strapi/utils": "^4.0.7",
-    "immutable": "3.8.2",
-    "lodash": "^4.17.21",
-    "prop-types": "15.7.2",
-    "react": "^17.0.2",
-    "react-router-dom": "5.2.0",
-    "sharp": "^0.29.0",
-    "styled-components": "^5.2.3"
+    "immutable": "3.8.2"
   },
   "peerDependencies": {
     "@strapi/strapi": "^4.x"
@@ -34,6 +20,10 @@
     "url": "https://nicolashamelin.fr"
   },
   "homepage": "https://github.com/nicolashmln/strapi-plugin-responsive-image",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolashmln/strapi-plugin-responsive-image"
+  },
   "keywords": [
     "strapi",
     "plugin",
