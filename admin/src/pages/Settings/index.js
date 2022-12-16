@@ -16,6 +16,8 @@ import { Typography } from "@strapi/design-system/Typography";
 import { Button } from "@strapi/design-system/Button";
 import { Main } from "@strapi/design-system/Main";
 import { Stack } from "@strapi/design-system/Stack";
+import { TextInput } from "@strapi/design-system/TextInput";
+import { Link } from "@strapi/design-system/Link";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import {
   ContentLayout,
@@ -31,87 +33,129 @@ import pluginPermissions from "../../permissions";
 
 export const SettingsPage = () => {
   const { formatMessage } = useIntl();
-  // const { lockApp, unlockApp } = useOverlayBlocker();
-  // const toggleNotification = useNotification();
+  const { lockApp, unlockApp } = useOverlayBlocker();
+  const toggleNotification = useNotification();
   useFocusWhenNavigate();
 
-  const [{ initialData, isLoading, isSubmiting, modifiedData }, dispatch] =
-    useReducer(reducer, initialState, init);
+  const [
+    { initialData, isLoading, isSubmiting, modifiedData, responsiveDimensions },
+    dispatch,
+  ] = useReducer(reducer, initialState, init);
 
   const isMounted = useRef(true);
 
-  // useEffect(() => {
-  //   const CancelToken = axios.CancelToken;
-  //   const source = CancelToken.source();
+  useEffect(() => {
+    const CancelToken = axios.CancelToken;
+    const source = CancelToken.source();
 
-  //   const getData = async () => {
-  //     try {
-  //       const {
-  //         data: { data },
-  //       } = await axiosInstance.get(getRequestUrl("settings"), {
-  //         cancelToken: source.token,
-  //       });
+    const getData = async () => {
+      try {
+        const {
+          data: { data },
+        } = await axiosInstance.get(getRequestUrl("settings"), {
+          cancelToken: source.token,
+        });
 
-  //       dispatch({
-  //         type: "GET_DATA_SUCCEEDED",
-  //         data,
-  //       });
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
+        const {
+          data: { data: uploadSettings },
+        } = await axiosInstance.get("/upload/settings", {
+          cancelToken: source.token,
+        });
 
-  //   if (isMounted.current) {
-  //     getData();
-  //   }
+        dispatch({
+          type: "GET_DATA_SUCCEEDED",
+          data: {
+            ...data,
+            responsiveDimensions: uploadSettings.responsiveDimensions,
+          },
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  //   return () => {
-  //     source.cancel("Operation canceled by the user.");
-  //     isMounted.current = false;
-  //   };
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+    if (isMounted.current) {
+      getData();
+    }
 
-  // const isSaveButtonDisabled = isEqual(initialData, modifiedData);
+    return () => {
+      source.cancel("Operation canceled by the user.");
+      isMounted.current = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const isSaveButtonDisabled = isEqual(initialData, modifiedData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // if (isSaveButtonDisabled) {
-    //   return;
-    // }
+    if (isSaveButtonDisabled) {
+      return;
+    }
 
-    // lockApp();
+    lockApp();
 
-    // dispatch({ type: 'ON_SUBMIT' });
+    dispatch({ type: 'ON_SUBMIT' });
 
-    // try {
-    //   await axiosInstance.put(getRequestUrl('settings'), modifiedData);
+    try {
+      await axiosInstance.put(getRequestUrl('settings'), modifiedData);
 
-    //   dispatch({
-    //     type: 'SUBMIT_SUCCEEDED',
-    //   });
+      dispatch({
+        type: 'SUBMIT_SUCCEEDED',
+      });
 
-    //   toggleNotification({
-    //     type: 'success',
-    //     message: { id: 'notification.form.success.fields' },
-    //   });
-    // } catch (err) {
-    //   console.error(err);
+      toggleNotification({
+        type: 'success',
+        message: { id: 'notification.form.success.fields' },
+      });
+    } catch (err) {
+      console.error(err);
 
-    //   dispatch({ type: 'ON_SUBMIT_ERROR' });
-    // }
+      dispatch({ type: 'ON_SUBMIT_ERROR' });
+    }
 
-    // unlockApp();
+    unlockApp();
   };
 
-  // const handleChange = ({ target: { name, value } }) => {
-  //   dispatch({
-  //     type: 'ON_CHANGE',
-  //     keys: name,
-  //     value,
-  //   });
-  // };
+  const handleChange = ({ target: { name, value } }) => {
+    console.log("handleChange", name, value);
+    dispatch({
+      type: 'ON_CHANGE',
+      keys: name,
+      value,
+    });
+  };
+
+  if (!responsiveDimensions) {
+    return (
+      <ContentLayout>
+        <Box
+          background="neutral0"
+          padding={6}
+          shadow="filterShadow"
+          hasRadius
+          style={{ textAlign: "center", marginTop: 50, fontSize: "1.2em" }}
+        >
+          <Typography variant="beta">
+            {formatMessage(
+              { id: getTrad("settings.section.toActivate.label") },
+              {
+                setting: formatMessage({
+                  id: "upload.settings.form.responsiveDimensions.label",
+                }),
+                link: (str) => (
+                  <Link to="/settings/media-library" key="settings-link">
+                    {str}
+                  </Link>
+                ),
+              }
+            )}
+          </Typography>
+        </Box>
+      </ContentLayout>
+    );
+  }
 
   return (
     <Main tabIndex={-1}>
@@ -125,13 +169,13 @@ export const SettingsPage = () => {
         <HeaderLayout
           title={formatMessage({
             id: getTrad("settings.header.label"),
-            defaultMessage: "Responsive image - Settings",
+            defaultMessage: "Responsive image",
           })}
           primaryAction={
             <Button
-              // disabled={isSaveButtonDisabled}
+              disabled={isSaveButtonDisabled}
               data-testid="save-button"
-              // loading={isSubmiting}
+              loading={isSubmiting}
               type="submit"
               startIcon={<Check />}
               size="L"
@@ -148,7 +192,7 @@ export const SettingsPage = () => {
           })}
         />
         <ContentLayout>
-          {false ? (
+          {isLoading ? (
             <LoadingIndicatorPage />
           ) : (
             <Layout>
@@ -159,7 +203,57 @@ export const SettingsPage = () => {
                   shadow="filterShadow"
                   hasRadius
                 >
-                  Test
+                  <Stack spacing={4}>
+                    <Flex>
+                      <Typography variant="delta" as="h2">
+                        {formatMessage({
+                          id: getTrad("settings.section.global.label"),
+                        })}
+                      </Typography>
+                    </Flex>
+                    <Grid gap={6}>
+                      <GridItem col={6} s={12}>
+                        <TextInput
+                          label={formatMessage({
+                            id: getTrad("settings.form.quality.label"),
+                          })}
+                          name="quality"
+                          onChange={handleChange}
+                          type="number"
+                          validations={{
+                            min: 1,
+                            max: 100,
+                          }}
+                          value={modifiedData.quality}
+                        />
+                      </GridItem>
+                      <GridItem col={6} s={12}>
+                        <ToggleInput
+                          checked={modifiedData.progressive}
+                          label={formatMessage({
+                            id: getTrad("settings.form.progressive.label"),
+                          })}
+                          name="progressive"
+                          offLabel={formatMessage({
+                            id: "app.components.ToggleCheckbox.off-label",
+                            defaultMessage: "Off",
+                          })}
+                          onLabel={formatMessage({
+                            id: "app.components.ToggleCheckbox.on-label",
+                            defaultMessage: "On",
+                          })}
+                          onChange={(e) => {
+                            handleChange({
+                              target: {
+                                name: "progressive",
+                                value: e.target.checked,
+                              },
+                            });
+                          }}
+                        />
+                      </GridItem>
+                    </Grid>
+                  </Stack>
                 </Box>
               </Stack>
             </Layout>
