@@ -1,6 +1,6 @@
 # Strapi plugin responsive-image
 
-Custom responsive image formats for https://strapi.io
+Custom responsive image formats for https://strapi.io v4 (For strapi v3 use v0.5.0)
 
 <div>
   <img src="assets/screenshot_settings.png" alt="Screenshoot settings">
