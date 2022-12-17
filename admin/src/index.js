@@ -1,49 +1,57 @@
 import pluginPkg from '../../package.json';
 import pluginId from './pluginId';
 import pluginPermissions from './permissions';
-import SettingsPage from './containers/Settings';
-import Initializer from './containers/Initializer';
-import lifecycles from './lifecycles';
-import trads from './translations';
 import { getTrad } from './utils';
+import { prefixPluginTranslations } from '@strapi/helper-plugin';
 
-export default strapi => {
-  const pluginDescription = pluginPkg.strapi.description || pluginPkg.description;
+const name = pluginPkg.strapi.name;
 
-  const plugin = {
-    blockerComponent: null,
-    blockerComponentProps: {},
-    description: pluginDescription,
-    icon: pluginPkg.strapi.icon,
-    id: pluginId,
-    initializer: Initializer,
-    injectedComponents: [],
-    isReady: false,
-    isRequired: pluginPkg.strapi.required || false,
-    layout: null,
-    lifecycles,
-    leftMenuLinks: [],
-    leftMenuSections: [],
-    name: pluginPkg.strapi.name,
-    preventComponentRendering: false,
-    settings: {
-      global: {
-        links: [
-          {
-            title: {
-              id: getTrad('plugin.name'),
-              defaultMessage: 'Responsive image',
-            },
-            name: 'responsive-image',
-            to: `${strapi.settingsBaseURL}/responsive-image`,
-            Component: SettingsPage,
-            permissions: pluginPermissions.settings,
-          },
-        ],
-      },
-    },
-    trads,
-  };
+export default {
+  register(app) {
+    app.registerPlugin({
+      id: pluginId,
+      name,
+    })
+  },
+  bootstrap(app) {
+    app.addSettingsLink(
+      'global',
+      {
+        id: 'responsive-image-settings',
+        intlLabel: { id: getTrad('plugin.name'), defaultMessage: 'Responsive image' },
+        to: '/settings/responsive-image',
+        Component: async () => {
+          const component = await import(
+            /* webpackChunkName: "responsive-image-settings-page" */ './pages/Settings'
+          );
 
-  return strapi.registerPlugin(plugin);
-};
+          return component;
+        },
+        permissions: pluginPermissions.settings
+      }
+    );
+  },
+  async registerTrads({ locales }) {
+    const importedTrads = await Promise.all(
+      locales.map(locale => {
+        return import(
+          /* webpackChunkName: "responsive-image-translations-[request]" */ `./translations/${locale}.json`
+        )
+          .then(({ default: data }) => {
+            return {
+              data: prefixPluginTranslations(data, pluginId),
+              locale,
+            };
+          })
+          .catch(() => {
+            return {
+              data: {},
+              locale,
+            };
+          });
+      })
+    );
+
+    return Promise.resolve(importedTrads);
+  }
+}

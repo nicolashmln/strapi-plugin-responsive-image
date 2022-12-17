@@ -5,7 +5,11 @@
  * It initializes the provider and sets the default settings in db.
  */
 
-module.exports = async () => {
+module.exports = async (
+  {
+    strapi
+  }
+) => {
   // set plugin store
   const configurator = strapi.store({
     type: 'plugin',
@@ -21,26 +25,29 @@ module.exports = async () => {
       value: {
         formats: [
           {
-            name: 'large',
+            name: "large",
             width: 1000,
-            fit: 'cover',
-            position: 'centre',
+            fit: "cover",
+            position: "centre",
             withoutEnlargement: false,
+            convertToFormat: "",
           },
           {
-            name: 'medium',
+            name: "medium",
             width: 750,
-            fit: 'cover',
-            position: 'centre',
+            fit: "cover",
+            position: "centre",
             withoutEnlargement: false,
+            convertToFormat: "",
           },
           {
-            name: 'small',
+            name: "small",
             width: 500,
-            fit: 'cover',
-            position: 'centre',
+            fit: "cover",
+            position: "centre",
             withoutEnlargement: false,
-          }
+            convertToFormat: "",
+          },
         ],
         quality: 87,
         progressive: true,

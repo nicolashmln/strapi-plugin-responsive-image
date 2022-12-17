@@ -1,31 +1,27 @@
 {
   "name": "strapi-plugin-responsive-image",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Custom responsive image formats for strapi.",
   "strapi": {
-    "name": "Responsive Image",
+    "name": "responsive-image",
+    "displayName": "Responsive Image",
     "icon": "images",
-    "description": "Custom responsive image formats for strapi."
+    "description": "Custom responsive image formats for strapi.",
+    "kind": "plugin"
   },
-  "dependencies": {
-    "@buffetjs/core": "^3.3.8",
-    "@buffetjs/custom": "^3.3.8",
-    "@buffetjs/icons": "^3.3.8",
-    "immutable": "3.8.2",
-    "lodash": "^4.17.21",
-    "prop-types": "15.7.2",
-    "react": "^16.14.0",
-    "react-router-dom": "^5.0.0",
-    "sharp": "^0.29.0",
-    "strapi-plugin-upload": "^3.6.8",
-    "strapi-utils": "^3.6.8",
-    "styled-components": "^5.2.3"
+  "dependencies": {},
+  "peerDependencies": {
+    "@strapi/strapi": "^4.x"
   },
   "author": {
     "name": "Nicolas Hamelin",
     "url": "https://nicolashamelin.fr"
   },
   "homepage": "https://github.com/nicolashmln/strapi-plugin-responsive-image",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolashmln/strapi-plugin-responsive-image"
+  },
   "keywords": [
     "strapi",
     "plugin",
@@ -34,8 +30,8 @@
     "media"
   ],
   "engines": {
-    "node": ">=10.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=8.0.0"
   },
   "license": "MIT"
 }

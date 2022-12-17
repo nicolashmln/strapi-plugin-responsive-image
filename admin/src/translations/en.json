@@ -2,6 +2,7 @@
   "plugin.name": "Responsive image",
   "plugin.description.long": "Custom responsive image formats.",
   "plugin.description.short": "Custom responsive image formats.",
+  "page.title": "Settings - Responsive Image",
   "settings.error": "Error while saving. See console for more info.",
   "settings.section.toActivate.label": "The \"{setting}\" needs to be activated on the <link>Media Library settings</link>",
   "settings.section.formats.label": "Formats",
@@ -22,7 +23,7 @@
   "settings.form.formats.withoutEnlargement.description": "Do not enlarge if the width or height are already less than the specified dimensions",
   "settings.form.quality.label": "Quality",
   "settings.form.progressive.label": "Progressive",
-  "settings.header.label": "Responsive image - Settings",
+  "settings.header.label": "Responsive image",
   "settings.section.global.label": "Global settings",
   "settings.sub-header.label": "Configure the settings for the responsive image"
 }
