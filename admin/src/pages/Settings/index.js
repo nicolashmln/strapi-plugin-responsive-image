@@ -130,7 +130,6 @@ export const SettingsPage = () => {
   };
 
   const handleChange = ({ target: { name, value } }) => {
-    console.log("handleChange", name, value);
     dispatch({
       type: "ON_CHANGE",
       keys: name,

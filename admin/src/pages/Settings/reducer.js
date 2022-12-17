@@ -29,7 +29,6 @@ const defaultFormat = {
 const reducer = (state, action) =>
   // eslint-disable-next-line consistent-return
   produce(state, (drafState) => {
-    console.log(action);
     switch (action.type) {
       case "CANCEL_CHANGES":
         drafState.modifiedData = state.initialData;
