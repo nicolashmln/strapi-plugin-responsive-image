@@ -30,29 +30,24 @@ yarn build
 
 ## Setup
 
-We need to override the _image manipulation_ of the _upload_ plugin and use the one from this plugin. So we need to add a `image-manipulation.js` file within the `extensions/upload/services/` folder.
+We need to override the _image manipulation_ of the _upload_ plugin and use the one from this plugin. So we need to add a `strapi-server.js` file within the `src/extensions/upload/strapi-server.js` folder.
 
 e.g
 
 ```bash
-mkdir -p extensions/upload/services/
-touch extensions/upload/services/image-manipulation.js
+mkdir -p src/extensions/upload/strapi-server.js
+touch src/extensions/upload/strapi-server.js
 ```
 
 Paste the code below in the file.
 
 ```javascript
-"use strict";
-/**
- * Image manipulation functions
- */
+const imageManipulation = require("strapi-plugin-responsive-image/server/services/image-manipulation");
 
-const {
-  generateResponsiveFormats,
-} = require("strapi-plugin-responsive-image/extensions/upload/services/image-manipulation.js");
+module.exports = (plugin) => {
+  plugin.services["image-manipulation"] = imageManipulation;
 
-module.exports = {
-  generateResponsiveFormats,
+  return plugin;
 };
 ```
 

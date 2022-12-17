@@ -1,7 +1,7 @@
-"use strict"
+"use strict";
 
 const responsiveImage = require("./responsive-image");
 
 module.exports = {
-  responsiveImage
+  "responsive-image": responsiveImage,
 };

@@ -17,7 +17,7 @@ const fileModel = 'plugin::upload.file';
 
 module.exports = {
   async getSettings(ctx) {
-    const data = await getService('responsiveImage').getSettings();
+    const data = await getService('responsive-image').getSettings();
 
     ctx.body = { data };
   },
@@ -34,7 +34,7 @@ module.exports = {
 
     const data = await validateSettings(body);
 
-    await getService('responsiveImage').setSettings(data);
+    await getService('responsive-image').setSettings(data);
 
     ctx.body = { data };
   },
