@@ -16,7 +16,7 @@ import { Typography } from "@strapi/design-system/Typography";
 import { Button } from "@strapi/design-system/Button";
 import { Main } from "@strapi/design-system/Main";
 import { Stack } from "@strapi/design-system/Stack";
-import { TextInput } from "@strapi/design-system/TextInput";
+import { NumberInput } from "@strapi/design-system/NumberInput";
 import { Link } from "@strapi/design-system/Link";
 import { Grid, GridItem } from "@strapi/design-system/Grid";
 import { BaseHeaderLayout } from "@strapi/design-system";
@@ -246,17 +246,23 @@ export const SettingsPage = () => {
                     </Flex>
                     <Grid gap={6}>
                       <GridItem col={6} s={12}>
-                        <TextInput
+                        <NumberInput
                           label={formatMessage({
                             id: getTrad("settings.form.quality.label"),
                           })}
                           name="quality"
-                          onChange={handleChange}
-                          type="number"
                           validations={{
                             min: 1,
                             max: 100,
                           }}
+                          onValueChange={(value) =>
+                            handleChange({
+                              target: {
+                                name: "quality",
+                                value,
+                              },
+                            })
+                          }
                           value={modifiedData.quality}
                         />
                       </GridItem>
