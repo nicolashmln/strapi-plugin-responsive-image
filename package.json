@@ -9,9 +9,7 @@
     "description": "Custom responsive image formats for strapi.",
     "kind": "plugin"
   },
-  "dependencies": {
-    "immutable": "3.8.2"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "@strapi/strapi": "^4.x"
   },
@@ -32,8 +30,8 @@
     "media"
   ],
   "engines": {
-    "node": ">=12.x. <=16.x.x",
-    "npm": ">=6.0.0"
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=8.0.0"
   },
   "license": "MIT"
 }
