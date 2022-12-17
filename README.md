@@ -79,3 +79,5 @@ The plugin uses [sharp](https://github.com/lovell/sharp) to resize the image.
 
 - Better UI/UX, maybe like the settings of the webhooks
 - Add re-generate button to re-generate all the formats if we change the settings
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E0H3N9M)
