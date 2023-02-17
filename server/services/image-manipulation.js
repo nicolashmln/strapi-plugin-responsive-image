@@ -6,7 +6,7 @@ const fs = require("fs");
 const { join } = require("path");
 const sharp = require("sharp");
 
-const { bytesToKbytes } = require("@strapi/plugin-upload/server/utils/file");
+const { file: { bytesToKbytes } } = require("@strapi/utils");
 const { getService } = require("../utils");
 const imageManipulation = require("@strapi/plugin-upload/server/services/image-manipulation");
 
