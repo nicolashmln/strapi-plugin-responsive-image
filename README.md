@@ -35,7 +35,7 @@ We need to override the _image manipulation_ of the _upload_ plugin and use the 
 e.g
 
 ```bash
-mkdir -p src/extensions/upload/strapi-server.js
+mkdir -p src/extensions/upload/
 touch src/extensions/upload/strapi-server.js
 ```
 
