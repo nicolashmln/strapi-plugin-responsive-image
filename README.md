@@ -41,11 +41,25 @@ touch src/extensions/upload/strapi-server.js
 
 Paste the code below in the file.
 
+For Javascript:
+
 ```javascript
 const imageManipulation = require("strapi-plugin-responsive-image/server/services/image-manipulation");
 
 module.exports = (plugin) => {
   plugin.services["image-manipulation"] = imageManipulation;
+
+  return plugin;
+};
+```
+
+For Typescript:
+
+```typescript
+const imageManipulation = require("strapi-plugin-responsive-image/server/services/image-manipulation");
+
+export default (plugin) => {
+  plugin.services["image-manipulation"] = imageManipulation();
 
   return plugin;
 };
