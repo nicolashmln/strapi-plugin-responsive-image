@@ -85,6 +85,7 @@ The plugin uses [sharp](https://github.com/lovell/sharp) to resize the image.
 | Output format       | The output format of your images: Same as source, JPEG, PNG, WebP or AVIF                                                                                |
 | Width               | **Required** Width of the image                                                                                                                          |
 | Height              | Height of the image                                                                                                                                      |
+| Quality             | Imagequality (overrides global quality setting for this image format)                                                                                    |
 | Fit                 | How the image should be resized to fit both provided dimensions. [More info](https://sharp.pixelplumbing.com/api-resize#parameters)                      |
 | Position            | To use when fit is cover or contain. [More info](https://sharp.pixelplumbing.com/api-resize#parameters)                                                  |
 | Without enlargement | Do not enlarge if the width or height are already less than the specified dimensions. [More info](https://sharp.pixelplumbing.com/api-resize#parameters) |
