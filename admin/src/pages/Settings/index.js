@@ -249,6 +249,9 @@ export const SettingsPage = () => {
                           label={formatMessage({
                             id: getTrad("settings.form.quality.label"),
                           })}
+                          hint={formatMessage({
+                            id: getTrad("settings.form.quality.description"),
+                          })}
                           name="quality"
                           validations={{
                             min: 1,
