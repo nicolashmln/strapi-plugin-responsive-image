@@ -33,6 +33,7 @@ yarn build
 We need to override the _image manipulation_ of the _upload_ plugin and use the one from this plugin. So we need to add a `strapi-server.js` file within the `src/extensions/upload/strapi-server.js` folder.
 
 e.g
+For Javascript:
 
 ```bash
 mkdir -p src/extensions/upload/
@@ -41,7 +42,7 @@ touch src/extensions/upload/strapi-server.js
 
 Paste the code below in the file.
 
-For Javascript:
+
 
 ```javascript
 const imageManipulation = require("strapi-plugin-responsive-image/server/services/image-manipulation");
@@ -53,7 +54,16 @@ module.exports = (plugin) => {
 };
 ```
 
+---
+
 For Typescript:
+
+```bash
+mkdir -p src/extensions/upload/
+touch src/extensions/upload/strapi-server.ts
+```
+
+Paste the code below in the file.
 
 ```typescript
 const imageManipulation = require("strapi-plugin-responsive-image/server/services/image-manipulation");
