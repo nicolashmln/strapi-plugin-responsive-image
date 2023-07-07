@@ -5,6 +5,7 @@
 const fs = require("fs");
 const { join } = require("path");
 const sharp = require("sharp");
+const mime = require("mime-types");
 
 const {
   file: { bytesToKbytes},
@@ -64,7 +65,7 @@ const resizeFileTo = async (
     name,
     hash,
     ext,
-    mime: file.mime,
+    mime: options.convertToFormat ? mime.lookup(ext) : file.mime,
     path: file.path || null,
     getStream: () => fs.createReadStream(filePath),
   };
