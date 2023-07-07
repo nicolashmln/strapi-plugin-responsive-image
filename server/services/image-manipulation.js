@@ -8,8 +8,8 @@ const sharp = require("sharp");
 const mime = require("mime-types");
 
 const {
-  file: { bytesToKbytes},
-} = require('@strapi/utils');
+  file: { bytesToKbytes },
+} = require("@strapi/utils");
 const { getService } = require("../utils");
 const imageManipulation = require("@strapi/plugin-upload/server/services/image-manipulation");
 
@@ -36,7 +36,7 @@ const resizeFileTo = async (
   quality,
   progressive,
   autoOrientation,
-  { name, hash, ext }
+  { name, hash, ext, format }
 ) => {
   const filePath = join(file.tmpWorkingDirectory, hash);
 
@@ -46,21 +46,31 @@ const resizeFileTo = async (
     sharpInstance = sharpInstance.toFormat(options.convertToFormat);
   }
 
-  await writeStreamToFile(
-    file.getStream().pipe(
-      sharpInstance
-        .resize(options)
-        .jpeg({ quality, progressive, force: false })
-        .png({
-          compressionLevel: Math.floor((quality / 100) * 9),
-          progressive,
-          force: false,
-        })
-        .webp({ quality, force: false })
-        .tiff({ quality, force: false })
-    ),
-    filePath
-  );
+  sharpInstance.resize(options);
+
+  switch (format) {
+    case "jpg":
+      sharpInstance.jpeg({ quality, progressive, force: false });
+      break;
+    case "png":
+      sharpInstance.png({
+        compressionLevel: Math.floor((quality / 100) * 9),
+        progressive,
+        force: false,
+      });
+      break;
+    case "webp":
+      sharpInstance.webp({ quality, force: false });
+      break;
+    case "avif":
+      sharpInstance.avif({ quality });
+      break;
+
+    default:
+      break;
+  }
+
+  await writeStreamToFile(file.getStream().pipe(sharpInstance), filePath);
   const newFile = {
     name,
     hash,
@@ -143,6 +153,7 @@ const generateBreakpoint = async (
       name: `${key}_${file.name}`,
       hash: `${key}_${file.hash}`,
       ext: getFileExtension(file, format),
+      format,
     }
   );
   return {
