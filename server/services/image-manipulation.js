@@ -11,7 +11,8 @@ const {
   file: { bytesToKbytes },
 } = require("@strapi/utils");
 const { getService } = require("../utils");
-const imageManipulation = require("@strapi/plugin-upload/server/services/image-manipulation");
+const pluginUpload = require("@strapi/plugin-upload/strapi-server");
+const imageManipulation = pluginUpload().services["image-manipulation"];
 
 const writeStreamToFile = (stream, path) =>
   new Promise((resolve, reject) => {
