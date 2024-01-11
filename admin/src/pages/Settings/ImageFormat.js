@@ -124,7 +124,7 @@ const ImageFormat = (props) => {
           ))}
         </Select>
       </GridItem>
-      <GridItem col={6} s={12}>
+      <GridItem col={4} s={7}>
         <NumberInput
           label={formatMessage({
             id: getTrad("settings.form.formats.width.label"),
@@ -147,7 +147,7 @@ const ImageFormat = (props) => {
           value={input.width}
         />
       </GridItem>
-      <GridItem col={6} s={12}>
+      <GridItem col={4} s={7}>
         <NumberInput
           label={formatMessage({
             id: getTrad("settings.form.formats.height.label"),
@@ -165,6 +165,26 @@ const ImageFormat = (props) => {
             )
           }
           value={input.height}
+        />
+      </GridItem>
+      <GridItem col={4} s={7}>
+        <NumberInput
+          label={formatMessage({
+            id: getTrad("settings.form.formats.quality.label"),
+          })}
+          name="quality"
+          onValueChange={(value) =>
+            handleFormatsChange(
+              {
+                target: {
+                  name: "quality",
+                  value,
+                },
+              },
+              index
+            )
+          }
+          value={input.quality}
         />
       </GridItem>
       <GridItem col={4} s={7}>

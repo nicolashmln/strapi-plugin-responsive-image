@@ -19,6 +19,7 @@ const settingsSchema = yup.object({
     convertToFormat: yup.string().transform(emptyStringToNull).nullable(),
     width: yup.number().required().min(1),
     height: yup.number().min(1).transform(emptyStringToNull).nullable(),
+    quality: yup.number().min(1).max(100).transform(emptyStringToNull).nullable(),
     fit: yup.string(),
     position: yup.string(),
     withoutEnlargement: yup.boolean(),

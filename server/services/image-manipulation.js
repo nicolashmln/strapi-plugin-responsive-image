@@ -43,6 +43,9 @@ const resizeFileTo = async (
 
   let sharpInstance = autoOrientation ? sharp().rotate() : sharp();
 
+  // merge global quality with format specific quality
+  quality = options?.quality ? options.quality : quality;
+
   if (options.convertToFormat) {
     sharpInstance = sharpInstance.toFormat(options.convertToFormat);
   }
