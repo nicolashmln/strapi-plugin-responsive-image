@@ -41,7 +41,9 @@ const resizeFileTo = async (
 ) => {
   const filePath = join(file.tmpWorkingDirectory, hash);
 
-  let sharpInstance = autoOrientation ? sharp().rotate() : sharp();
+  let sharpInstance = autoOrientation
+    ? sharp({ animated: true }).rotate()
+    : sharp({ animated: true });
 
   if (options.convertToFormat) {
     sharpInstance = sharpInstance.toFormat(options.convertToFormat);
